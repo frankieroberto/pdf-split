@@ -3,10 +3,12 @@ GEM
   specs:
     cmdparse (3.0.7)
     geom2d (0.3.1)
-    hexapdf (0.9.3)
+    hexapdf (0.32.0)
       cmdparse (~> 3.0, >= 3.0.3)
-      geom2d (~> 0.2)
+      geom2d (~> 0.3)
+      openssl (>= 2.2.1)
     nio4r (2.5.9)
+    openssl (3.1.0)
     puma (6.2.1)
       nio4r (~> 2.0)
     rack (3.0.7)
@@ -15,12 +17,12 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  hexapdf (~> 0.9.3)
+  hexapdf (~> 0.32.0)
   puma
   rack
 
 RUBY VERSION
-   ruby 2.7.6p219
+   ruby 3.0.6p216
 
 BUNDLED WITH
-   2.1.4
+   2.2.33
