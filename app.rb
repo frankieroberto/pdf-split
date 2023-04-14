@@ -15,11 +15,10 @@ class PdfFile
   end
 
   def read_page(page_number)
-
     if page_number < document.pages.length
       new_doc = HexaPDF::Document.new
-      new_doc.pages.add(new_doc.import(document.pages[page_number]))
-      new_doc.write('temp.pdf')
+      new_doc.pages << new_doc.import(document.pages[page_number])
+      new_doc.write('temp.pdf', optimize: true)
       file = File.new('temp.pdf', 'r')
       file.read
     else
@@ -30,7 +29,7 @@ class PdfFile
   private
 
   def file
-    @file ||= open("#{ENV.fetch('ORIGIN_URL')}/#{file_name}")
+    @file ||= URI.open("#{ENV.fetch('ORIGIN_URL')}/#{file_name}")
   end
 
   def document
@@ -47,8 +46,6 @@ class PdfSplitApp
   def call(env)
 
     req = Rack::Request.new(env)
-
-    puts req.path_info
 
     path_match = req.path_info.match(REGEX)
 
